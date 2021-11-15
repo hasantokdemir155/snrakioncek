@@ -1,0 +1,31 @@
+
+ALTER proc [dbo].[nxt]
+@s int
+as
+
+begin
+
+begin
+
+declare @ad as varchar(50)
+declare @soyad as varchar(50)
+declare @satt as int
+--set @satt= select @satt
+select @ad=ad   from srax where sra=@s
+select @soyad=syad from sraxx  where sra=@s
+
+select @s,@ad,@soyad
+end
+end
+
+
+
+
+
+create view [dbo].[sraxx]
+as
+select ROW_NUMBER() OVER (ORDER BY syad) AS sra,syad from soyadlar 
+
+ALTER view [dbo].[srax]
+as
+select ROW_NUMBER() OVER (ORDER BY ad) AS sra,ad from adlar 
